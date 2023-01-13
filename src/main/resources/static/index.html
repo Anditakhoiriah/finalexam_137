@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>FINAL EXAM</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script>
+            function get(){
+                let view = document.getElementById("view");
+                //view.innerhtml = "alo";
+                $.ajax({
+                   url: 'http://localhost:8080/GET',
+                   dataType: 'text',
+                   success: function(result){
+                       view.innerHTML = result;
+                   }
+                })
+            }
+            function post(){
+                let view = document.getElementById("view");
+                let id = document.getElementById("id").value;
+                let no_surat = document.getElementById("no_surat").value;
+                let judul = document.getElementById("judul").value;
+                let tembusan = document.getElementById("tembusan").value;
+                let file = document.getElementById("file").value;
+                let timestamp = document.getElementById("timestamp").value;
+                let json = {"id":id,"no_surat":no_surat, "judul":judul,"tembusan":tembusan,"file":file, "timestamp":timestamp};
+                let obj = JSON.stringify(json);
+                //view.innerhtml = "alo";
+                $.ajax({
+                   url: 'http://localhost:8080/POST',
+                   data:obj,
+                   method: 'POST',
+                   contentType: 'application/json',
+                   dataType: 'text',
+                   success: function(result){
+                       view.innerHTML = result;
+                   }
+                })
+            }
+            function put(){
+                let view = document.getElementById("view");
+                let id = document.getElementById("id").value;
+                let no_surat = document.getElementById("no_surat").value;
+                let judul = document.getElementById("judul").value;
+                let tembusan = document.getElementById("tembusan").value;
+                let file = document.getElementById("file").value;
+                let timestamp = document.getElementById("timestamp").value;
+                let json = {"id":id, "judul":judul, "timestamp":timestamp};
+                let obj = JSON.stringify(json);
+                //view.innerhtml = "alo";
+                $.ajax({
+                   url: 'http://localhost:8080/PUT',
+                   data:obj,
+                   method: 'PUT',
+                   contentType: 'application/json',
+                   dataType: 'text',
+                   success: function(result){
+                       view.innerHTML = result;
+                   }
+                })
+            }
+            function del(){
+                let id = document.getElementById("id").value;
+                let json = { id: id };
+                let obj = JSON.stringify(json);
+                //view.innerhtml = "alo";
+                $.ajax({
+                   url: 'http://localhost:8080/Delete',
+                   data:obj,
+                   method: 'DELETE',
+                   contentType: 'application/json',
+                   dataType: 'text',
+                   success: function(result){
+                       view.innerHTML = result;
+                   }
+                })
+            }
+            
+            
+        </script>
+    </head>
+    <body>
+        <div>RESTful Consume</div>
+        <div> ID </div>
+        <input type="text" id="id" name="id"><br>
+        <div> No Surat </div>
+        <input type="text" id="no_surat" name="no_surat"><br>
+        <div> Judul </div>
+        <input type="text" id="judul" name="judul"><br>
+        <div> Tembusan </div>
+        <input type="text" id="tembusan" name="tembusan"><br>
+        <div> File </div>
+        <input type="file" id="file" name="file"><br>
+        <div> Timestamp </div>
+        <input type="datetime-local" id="timestamp" name="timestamp"><br>
+        <br>
+        <button onclick="get()">GET</button>
+        <button onclick="post()">POST</button>
+        <button onclick="put()">PUT</button>
+        <button onclick="del()">DELETE</button>
+        <br><br>
+        <div id="view">
+        
+    </body>
+</html>
