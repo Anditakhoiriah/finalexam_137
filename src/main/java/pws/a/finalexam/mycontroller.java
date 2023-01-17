@@ -46,7 +46,7 @@ public class mycontroller {
         data = export.readValue(datasend.getBody(), Surat.class);
         try {
             control.create(data);
-            feedback = data.getJudul()+ "saved";
+            feedback = data.getJudul()+ " saved";
         } catch (Exception error) {
             feedback = error.getMessage();
         }
@@ -59,7 +59,7 @@ public class mycontroller {
         data = export.readValue(datasend.getBody(), Surat.class);
         try {
             control.edit(data);
-            feedback = data.getJudul()+ "edited";
+            feedback = data.getJudul()+ " edited";
         } catch (Exception error) {
             feedback = error.getMessage();
         }
@@ -81,3 +81,4 @@ public class mycontroller {
     }
 }
 
+    

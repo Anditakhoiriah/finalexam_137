@@ -29,7 +29,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 let tembusan = document.getElementById("tembusan").value;
                 let file = document.getElementById("file").value;
                 let timestamp = document.getElementById("timestamp").value;
-                let json = {"id":id,"no_surat":no_surat, "judul":judul,"tembusan":tembusan,"file":file, "timestamp":timestamp};
+                let json = {"id":id, "noSurat":no_surat ,"judul":judul,"tembusan":tembusan ,"timestamp":timestamp};
                 let obj = JSON.stringify(json);
                 //view.innerhtml = "alo";
                 $.ajax({
@@ -51,7 +51,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 let tembusan = document.getElementById("tembusan").value;
                 let file = document.getElementById("file").value;
                 let timestamp = document.getElementById("timestamp").value;
-                let json = {"id":id, "judul":judul, "timestamp":timestamp};
+                let json = {"id":id, "noSurat":no_surat ,"judul":judul,"tembusan":tembusan ,"timestamp":timestamp};
                 let obj = JSON.stringify(json);
                 //view.innerhtml = "alo";
                 $.ajax({
