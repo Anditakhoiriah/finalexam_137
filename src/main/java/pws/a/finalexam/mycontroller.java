@@ -6,6 +6,8 @@ package pws.a.finalexam;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.http.HttpEntity;
@@ -44,7 +46,11 @@ public class mycontroller {
         ObjectMapper export = new ObjectMapper();
         String feedback = "Data";
         data = export.readValue(datasend.getBody(), Surat.class);
+        
+        Timestamp ts = Timestamp.from(Instant.now());
+        
         try {
+            data.setTimestamp(ts);
             control.create(data);
             feedback = data.getJudul()+ " saved";
         } catch (Exception error) {
@@ -57,7 +63,11 @@ public class mycontroller {
         ObjectMapper export = new ObjectMapper();
         String feedback = "Data";
         data = export.readValue(datasend.getBody(), Surat.class);
+        
+         Timestamp ts = Timestamp.from(Instant.now());
+         
         try {
+            data.setTimestamp(ts);
             control.edit(data);
             feedback = data.getJudul()+ " edited";
         } catch (Exception error) {
@@ -66,7 +76,7 @@ public class mycontroller {
         return feedback;
     }
     
-    @DeleteMapping(value = "/Delete", consumes = APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/DELETE", consumes = APPLICATION_JSON_VALUE)
     public String deleteData(HttpEntity<String> datasend) throws JsonProcessingException{
         ObjectMapper export = new ObjectMapper();
         String feedback = "Data";
